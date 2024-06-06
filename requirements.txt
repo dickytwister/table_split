@@ -1,0 +1,12 @@
+pillow~=10.3.0
+pydantic~=2.7.1
+dataclasses~=0.6
+beautifulsoup4~=4.12.2
+requests~=2.31.0
+numpy~=1.26.4
+pandas~=2.2.2
+opencv-python~=4.9.0.80
+matplotlib~=3.8.4
+selenium~=4.2.0
+pyyaml~=6.0.1
+portalocker~=2.8.2

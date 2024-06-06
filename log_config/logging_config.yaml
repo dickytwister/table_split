@@ -1,0 +1,34 @@
+version: 1
+disable_existing_loggers: True
+
+formatters:
+  json:
+    format: '%(asctime)s.%(msecs)03d|%(levelname)s|%(process)s.%(threadName)s|%(lineno)d|%(filename)s:{"msg": "%(message)s"}'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+    (): log_config.MyFormatter
+  console:
+    format: '%(asctime)s.%(msecs)03d|%(levelname)s|%(process)s.%(threadName)s|%(lineno)d|%(filename)s:%(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+
+filters:
+  filter_1:
+    (): log_config.LoggingFilter
+
+handlers:
+  info_file_handler: # filename field needs to be set when initializing
+    class: log_config.PylogHandlers.PylogTimedRotatingFileHandler
+    level: INFO
+    formatter: json
+    when: D
+    interval: 1
+    backup_count: 7
+    encoding: utf8
+  info_handler:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: console
+    stream: ext://sys.stdout
+
+root:
+  level: INFO
+  handlers: [info_handler]
